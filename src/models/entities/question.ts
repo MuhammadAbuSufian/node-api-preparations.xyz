@@ -4,9 +4,13 @@ import { Base } from './base';
 @Entity()
 export class Option extends Base{
   @Column()
-  questionId: ObjectID;
-  @Column()
   title: string;
   @Column()
-  answer: boolean;
+  description: string;
+  @Column()
+  categoryId: ObjectID;
+  @Column()
+  subjectId: ObjectID;
+  @Column()
+  chapterId: ObjectID;
 }

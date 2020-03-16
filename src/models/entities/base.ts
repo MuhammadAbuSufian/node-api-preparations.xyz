@@ -1,6 +1,6 @@
 import { Column, ObjectID, ObjectIdColumn } from 'typeorm';
 
-export abstract class BaseModel {
+export abstract class Base {
   @ObjectIdColumn()
   id: ObjectID;
   @Column()

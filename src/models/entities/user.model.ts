@@ -1,13 +1,10 @@
 import { Column, Entity, ObjectID, ObjectIdColumn } from 'typeorm';
-import { BaseModel } from './base.model';
+import { Base } from './base';
 
 @Entity()
-export class User extends BaseModel{
-
+export class User extends Base{
   @Column()
   firstName: string;
-
   @Column()
   lastName: string;
-
 }
