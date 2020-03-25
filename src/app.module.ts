@@ -4,6 +4,8 @@ import { AppService } from './app.service';
 import { DbConfigModule } from './config/db.config';
 import { UserService } from './services/user.service';
 import { QuestionController } from './controllers/question.controller';
+import { CategoryController } from './controllers/category.controller';
+import { CategoryService } from './services/category.service';
 
 @Module({
   imports: [
@@ -11,11 +13,13 @@ import { QuestionController } from './controllers/question.controller';
   ],
   controllers: [
     AppController,
-    QuestionController
+    QuestionController,
+    CategoryController
   ],
   providers: [
     AppService,
-    UserService
+    UserService,
+    CategoryService
   ],
 })
 export class AppModule {}

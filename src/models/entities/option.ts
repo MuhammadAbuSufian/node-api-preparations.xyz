@@ -4,7 +4,7 @@ import { Base } from './base';
 @Entity()
 export class Option extends Base{
   @Column()
-  questionId: ObjectID;
+  questionId: string;
   @Column()
   title: string;
   @Column()

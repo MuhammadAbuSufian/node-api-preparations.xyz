@@ -2,15 +2,15 @@ import { Column, Entity, ObjectID } from 'typeorm';
 import { Base } from './base';
 
 @Entity()
-export class Option extends Base{
+export class Question extends Base{
   @Column()
   title: string;
   @Column()
   description: string;
   @Column()
-  categoryId: ObjectID;
+  categoryId: string;
   @Column()
-  subjectId: ObjectID;
+  subjectId: string;
   @Column()
-  chapterId: ObjectID;
+  chapterId: string;
 }
