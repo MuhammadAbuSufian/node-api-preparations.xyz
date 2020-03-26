@@ -1,6 +1,6 @@
 import { Base } from './base';
-import { Column } from 'typeorm';
-
+import { Column, Entity } from 'typeorm';
+@Entity()
 export class Chapter extends Base{
   @Column()
   title: string;

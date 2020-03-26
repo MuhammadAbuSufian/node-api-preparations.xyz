@@ -3,7 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from '../models/entities/user.model';
 import { Category } from '../models/entities/category';
 import { Question } from '../models/entities/question';
-import { Subject } from 'rxjs';
+import { Subject } from '../models/entities/Subject';
 import { Chapter } from '../models/entities/chapter';
 import { Option } from '../models/entities/Option';
 
