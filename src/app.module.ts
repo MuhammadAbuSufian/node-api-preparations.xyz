@@ -6,6 +6,10 @@ import { UserService } from './services/user.service';
 import { QuestionController } from './controllers/question.controller';
 import { CategoryController } from './controllers/category.controller';
 import { CategoryService } from './services/category.service';
+import { SubjectController } from './controllers/subject.controller';
+import { ChapterController } from './controllers/chapter.controller';
+import { SubjectService } from './services/subject.service';
+import { ChapterService } from './services/chapter.service';
 
 @Module({
   imports: [
@@ -14,12 +18,16 @@ import { CategoryService } from './services/category.service';
   controllers: [
     AppController,
     QuestionController,
-    CategoryController
+    CategoryController,
+    SubjectController,
+    ChapterController
   ],
   providers: [
     AppService,
     UserService,
-    CategoryService
+    CategoryService,
+    SubjectService,
+    ChapterService
   ],
 })
 export class AppModule {}

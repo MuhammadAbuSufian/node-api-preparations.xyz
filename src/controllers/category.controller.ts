@@ -10,34 +10,28 @@ export class CategoryController {
   constructor( private readonly service: CategoryService) {}
 
   @Post()
-  create(@Body() category: Category) {
-    return this.service.save(category);
+  async create(@Body() category: Category) {
+    return await this.service.save(category);
   }
 
   @Post('data-grid')
-  async getGridData(@Body() request: DataTableRequestModel) {
-
+  async getGridData(@Body() request: DataTableRequestModel): Promise<DataAbleViewModel<Category>>  {
     return await  this.service.findGridData(request);
   }
 
-  @Get()
-  findAll(@Query() query: any) {
-    return `This action returns all cats (limit:  items)`;
-  }
-
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return `This action returns a #${id} cat`;
+  async getOne(@Param('id') id: string): Promise<Category> {
+    return await this.service.findOne(id);
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() category: Category) {
-    return this.service.save(category);
+  async update(@Param('id') id: string, @Body() category: Category) {
+    return await this.service.save(category);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return `This action removes a #${id} cat`;
+  async remove(@Param('id') id: string) {
+    return await this.service.remove(id);
   }
 
 }

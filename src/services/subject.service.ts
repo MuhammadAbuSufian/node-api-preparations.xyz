@@ -1,23 +1,22 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Category } from '../models/entities/category';
+import { Subject } from '../models/entities/subject';
 import { Repository } from 'typeorm';
 import { DataTableRequestModel } from '../models/request-models/data-table.request.model';
 import { DataAbleViewModel } from '../models/view-models/data-able.view.model';
 import { FindManyOptions } from 'typeorm/find-options/FindManyOptions';
 
-
 @Injectable()
-export class CategoryService {
+export class SubjectService {
   constructor(
-    @InjectRepository(Category)
-    private readonly categoryRepository: Repository<Category>,
+    @InjectRepository(Subject)
+    private readonly subjectRepository: Repository<Subject>,
   ) {}
 
-  async findGridData(request: DataTableRequestModel) : Promise<DataAbleViewModel<Category>>{
-    const gridData: DataAbleViewModel<Category> = new DataAbleViewModel<Category>();
+  async findGridData(request: DataTableRequestModel) : Promise<DataAbleViewModel<Subject>>{
+    const gridData: DataAbleViewModel<Subject> = new DataAbleViewModel<Subject>();
     const searchKeyPattern = new RegExp('.*' + request.search.value + '.*', "i");
-    const query: FindManyOptions<Category> = {
+    const query: FindManyOptions<Subject> = {
       where: {title: searchKeyPattern},
       skip: request.start,
       take: request.length,
@@ -25,22 +24,22 @@ export class CategoryService {
         [request.columns[request.order[0].column].data] : request.order[0].dir.toUpperCase()
       },
     };
-    const data = await this.categoryRepository.findAndCount( query );
-    gridData.recordsTotal = await this.categoryRepository.count();
+    const data = await this.subjectRepository.findAndCount( query );
+    gridData.recordsTotal = await this.subjectRepository.count();
     gridData.data = data[0];
     gridData.recordsFiltered = data[1];
     return gridData;
   }
 
-  async findOne(id: string): Promise<Category> {
-    return await this.categoryRepository.findOne(id);
+  async findOne(id: string): Promise<Subject> {
+    return await this.subjectRepository.findOne(id);
   }
 
-  async save(category: Category): Promise<Category>{
-    return await  this.categoryRepository.save(category)
+  async save(category: Subject): Promise<Subject>{
+    return await  this.subjectRepository.save(category)
   }
 
   async remove(id: string): Promise<void> {
-    await this.categoryRepository.delete(id);
+    await this.subjectRepository.delete(id);
   }
 }
