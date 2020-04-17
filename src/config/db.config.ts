@@ -6,6 +6,7 @@ import { Question } from '../models/entities/question';
 import { Subject } from '../models/entities/Subject';
 import { Chapter } from '../models/entities/chapter';
 import { Option } from '../models/entities/Option';
+import { CategoryMapping } from '../models/entities/category-mapping';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -19,7 +20,8 @@ import { Option } from '../models/entities/Option';
       Question,
       Subject,
       Chapter,
-      Option
+      Option,
+      CategoryMapping
     ],
     synchronize: true,
     },),
@@ -29,7 +31,8 @@ import { Option } from '../models/entities/Option';
       Question,
       Subject,
       Chapter,
-      Option
+      Option,
+      CategoryMapping
     ])
   ],
   exports: [TypeOrmModule]

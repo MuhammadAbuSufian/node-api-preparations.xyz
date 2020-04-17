@@ -5,6 +5,8 @@ import { Repository } from 'typeorm';
 import { DataTableRequestModel } from '../models/request-models/data-table.request.model';
 import { DataAbleViewModel } from '../models/view-models/data-able.view.model';
 import { FindManyOptions } from 'typeorm/find-options/FindManyOptions';
+import { Observable } from 'rxjs';
+import { BaseSetupViewModel } from '../models/view-models/base-setup.view.model';
 
 
 @Injectable()
@@ -42,5 +44,9 @@ export class CategoryService {
 
   async remove(id: string): Promise<void> {
     await this.categoryRepository.delete(id);
+  }
+
+  async getSetupData(): Promise<Category[]> {
+    return await this.categoryRepository.find();
   }
 }

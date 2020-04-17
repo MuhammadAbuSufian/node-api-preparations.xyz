@@ -10,6 +10,7 @@ import { SubjectController } from './controllers/subject.controller';
 import { ChapterController } from './controllers/chapter.controller';
 import { SubjectService } from './services/subject.service';
 import { ChapterService } from './services/chapter.service';
+import { QuestionService } from './services/question.service';
 
 @Module({
   imports: [
@@ -27,7 +28,8 @@ import { ChapterService } from './services/chapter.service';
     UserService,
     CategoryService,
     SubjectService,
-    ChapterService
+    ChapterService,
+    QuestionService
   ],
 })
 export class AppModule {}

@@ -4,6 +4,7 @@ import { CategoryService } from '../services/category.service';
 import { Category } from '../models/entities/category';
 import { DataTableRequestModel } from '../models/request-models/data-table.request.model';
 import { DataAbleViewModel } from '../models/view-models/data-able.view.model';
+import { BaseSetupViewModel } from '../models/view-models/base-setup.view.model';
 
 @Controller('/category')
 export class CategoryController {
@@ -17,6 +18,11 @@ export class CategoryController {
   @Post('data-grid')
   async getGridData(@Body() request: DataTableRequestModel): Promise<DataAbleViewModel<Category>>  {
     return await  this.service.findGridData(request);
+  }
+
+  @Get('data-setup')
+  async getCategoriesSetup(): Promise<Category[]> {
+    return await this.service.getSetupData();
   }
 
   @Get(':id')
@@ -33,5 +39,6 @@ export class CategoryController {
   async remove(@Param('id') id: string) {
     return await this.service.remove(id);
   }
+
 
 }

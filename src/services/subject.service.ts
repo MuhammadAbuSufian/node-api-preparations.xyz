@@ -5,12 +5,19 @@ import { Repository } from 'typeorm';
 import { DataTableRequestModel } from '../models/request-models/data-table.request.model';
 import { DataAbleViewModel } from '../models/view-models/data-able.view.model';
 import { FindManyOptions } from 'typeorm/find-options/FindManyOptions';
+import { Category } from '../models/entities/category';
+import { BaseSetupViewModel } from '../models/view-models/base-setup.view.model';
+import { Question } from '../models/entities/question';
 
 @Injectable()
 export class SubjectService {
   constructor(
     @InjectRepository(Subject)
     private readonly subjectRepository: Repository<Subject>,
+    @InjectRepository(Category)
+    private readonly categoryRepository: Repository<Category>,
+    @InjectRepository(Question)
+    private readonly questionRepository: Repository<Question>,
   ) {}
 
   async findGridData(request: DataTableRequestModel) : Promise<DataAbleViewModel<Subject>>{
@@ -41,5 +48,17 @@ export class SubjectService {
 
   async remove(id: string): Promise<void> {
     await this.subjectRepository.delete(id);
+  }
+
+  async getSetupData(): Promise<Subject[]> {
+    return await this.subjectRepository.find({
+      select: ['id', 'title']
+    });
+  }
+
+  async getSubjectByCategory(category: string): Promise<any[]> {
+    return await this.questionRepository.find({
+      where: { Categories: [{title: category}]},
+    });
   }
 }

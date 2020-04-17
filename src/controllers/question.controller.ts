@@ -1,13 +1,21 @@
-import { Controller, Get } from '@nestjs/common';
-import { UserService } from '../services/user.service';
-import { User } from '../models/entities/user.model';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { QuestionService } from '../services/question.service';
+import { QuestionRequestModel } from '../models/request-models/question.request.model';
+import { Question } from '../models/entities/question';
 
 @Controller('/question')
 export class QuestionController {
-  constructor( private readonly usersService: UserService) {}
+  constructor( private readonly service: QuestionService) {}
 
-  @Get()
-  getQuestion(): any {
-    return 'Sample question';
+  @Get(':page')
+  async getQuestion(@Param('page') page: number): Promise<Question[]> {
+    return await  this.service.getQuestion(page);
   }
+
+
+  @Post()
+  async create(@Body() question: QuestionRequestModel): Promise<Question> {
+    return await this.service.save(question);
+  }
+
 }

@@ -3,6 +3,7 @@ import { DataTableRequestModel } from '../models/request-models/data-table.reque
 import { ChapterService } from '../services/chapter.service';
 import { Chapter } from '../models/entities/chapter';
 import { DataAbleViewModel } from '../models/view-models/data-able.view.model';
+import { Category } from '../models/entities/category';
 
 @Controller('/chapter')
 export class ChapterController {
@@ -17,6 +18,12 @@ export class ChapterController {
   async getGridData(@Body() request: DataTableRequestModel): Promise<DataAbleViewModel<Chapter>>  {
     return await  this.service.findGridData(request);
   }
+
+  @Get('data-setup')
+  async getChaptersSetup(): Promise<Chapter[]> {
+    return await this.service.getSetupData();
+  }
+
 
   @Get(':id')
   async getOne(@Param('id') id: string): Promise<Chapter> {

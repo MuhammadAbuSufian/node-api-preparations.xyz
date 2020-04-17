@@ -3,6 +3,8 @@ import { Subject } from '../models/entities/subject';
 import { SubjectService } from '../services/subject.service';
 import { DataTableRequestModel } from '../models/request-models/data-table.request.model';
 import { DataAbleViewModel } from '../models/view-models/data-able.view.model';
+import { Category } from '../models/entities/category';
+import { Chapter } from '../models/entities/chapter';
 
 @Controller('/subject')
 export class SubjectController {
@@ -18,6 +20,11 @@ export class SubjectController {
     return await  this.service.findGridData(request);
   }
 
+  @Get(':category')
+  async getSubjectsByCategory(@Param('category') category: string): Promise<any[]> {
+    return await this.service.getSubjectByCategory(category);
+  }
+
   @Get(':id')
   async getOne(@Param('id') id: string): Promise<Subject> {
     return await this.service.findOne(id);
@@ -31,6 +38,11 @@ export class SubjectController {
   @Delete(':id')
   async remove(@Param('id') id: string) {
     return await this.service.remove(id);
+  }
+
+  @Get('data-setup')
+  async getSubjectsSetup(): Promise<Subject[]> {
+    return await this.service.getSetupData();
   }
 
 }

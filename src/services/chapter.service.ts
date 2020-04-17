@@ -5,6 +5,7 @@ import { DataTableRequestModel } from '../models/request-models/data-table.reque
 import { DataAbleViewModel } from '../models/view-models/data-able.view.model';
 import { FindManyOptions } from 'typeorm/find-options/FindManyOptions';
 import { Chapter } from '../models/entities/chapter';
+import { Subject } from '../models/entities/subject';
 
 @Injectable()
 export class ChapterService {
@@ -41,5 +42,11 @@ export class ChapterService {
 
   async remove(id: string): Promise<void> {
     await this.chapterRepository.delete(id);
+  }
+
+  async getSetupData(): Promise<Chapter[]> {
+    return await this.chapterRepository.find({
+      select: ['id', 'title']
+    });
   }
 }
