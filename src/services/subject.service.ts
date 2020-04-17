@@ -56,9 +56,13 @@ export class SubjectService {
     });
   }
 
+  //Todo
   async getSubjectByCategory(category: string): Promise<any[]> {
-    return await this.questionRepository.find({
-      where: { Categories: [{title: category}]},
-    });
+    return await this.questionRepository.find(
+      {
+        where : {"Categories.title": category},
+        select: ["subject"]
+      }
+    );
   }
 }

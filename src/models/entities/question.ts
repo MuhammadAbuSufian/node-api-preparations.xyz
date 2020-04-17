@@ -2,6 +2,8 @@ import { Column, Entity, Index, ObjectID } from 'typeorm';
 import { Base } from './base';
 import { Option } from './option';
 import { Category } from './category';
+import { Subject } from './subject';
+import { Chapter } from './chapter';
 
 @Entity()
 export class Question extends Base{
@@ -11,11 +13,11 @@ export class Question extends Base{
   @Column()
   description: string;
   @Column()
-  subjectId: string;
+  subject: Subject;
   @Column()
-  chapterId: string;
+  chapter: Chapter;
   @Column()
   options: Option[];
-  @Column()
-  Categories: Category[];
+  @Column(type => Category)
+  categories: Category[];
 }

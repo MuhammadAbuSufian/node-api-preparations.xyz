@@ -7,9 +7,9 @@ import { Question } from '../models/entities/question';
 export class QuestionController {
   constructor( private readonly service: QuestionService) {}
 
-  @Get(':page')
-  async getQuestion(@Param('page') page: number): Promise<Question[]> {
-    return await  this.service.getQuestion(page);
+  @Get(':page/:category/:chapter/:subject')
+  async getQuestion(@Param('page') page: number, @Param('category') category: string, @Param('chapter') chapter: string, @Param('subject') subject: string): Promise<Question[]> {
+    return await  this.service.getQuestion(page, category, chapter, subject);
   }
 
 

@@ -25,10 +25,10 @@ export class QuestionService extends BaseService {
   async save(question: QuestionRequestModel): Promise<Question>{
     const newQuestion = new Question();
     newQuestion.title = question.title;
-    newQuestion.subjectId = question.subjectId;
-    newQuestion.chapterId = question.chapterId;
+    newQuestion.subject = question.subject;
+    newQuestion.chapter = question.chapter;
     newQuestion.options = question.options;
-    newQuestion.Categories = question.categories;
+    newQuestion.categories = question.categories;
     this.genFootprint<Question>(newQuestion);
     return await  this.questionRepository.save(newQuestion);
   }
@@ -61,8 +61,19 @@ export class QuestionService extends BaseService {
     return await this.categoryMappingRepository.save(categoryMaps);
   }
 
-  async getQuestion(page: number): Promise<Question[]> {
+  async getQuestion(page: number, category: string, chapter: string, subject: string): Promise<Question[]> {
+    let searchchapter = new RegExp('.*.*', "i");
+    let searchsubject = new RegExp('.*.*', "i");
+
+    if(chapter !== "default"){
+      searchchapter = new RegExp('.*' + chapter + '.*', "i");
+    }
+    if(subject !== "default"){
+      searchsubject = new RegExp('.*' + subject + '.*', "i");
+    }
+
     return await this.questionRepository.find({
+      where: {"categories.title": category, "chapter.id": searchchapter, "subject.id": searchsubject},
       skip: (page*30),
       take: 30
     });
