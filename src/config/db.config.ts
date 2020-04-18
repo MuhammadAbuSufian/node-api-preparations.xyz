@@ -13,7 +13,7 @@ import { CategoryMapping } from '../models/entities/category-mapping';
     type: 'mongodb',
     host: 'localhost',
     port: 27017,
-    database: 'test',
+    database: 'preparations',
     entities: [
       User,
       Category,
