@@ -14,31 +14,36 @@ export class CategoryController {
   async create(@Body() category: Category) {
     return await this.service.save(category);
   }
+  @Get()
+   async test(){
+    return "success";
+   }
 
-  @Post('data-grid')
-  async getGridData(@Body() request: DataTableRequestModel): Promise<DataAbleViewModel<Category>>  {
-    return await  this.service.findGridData(request);
-  }
+  //
+  // @Post('data-grid')
+  // async getGridData(@Body() request: DataTableRequestModel): Promise<DataAbleViewModel<Category>>  {
+  //   return await  this.service.findGridData(request);
+  // }
+  //
+  // @Get('data-setup')
+  // async getCategoriesSetup(): Promise<Category[]> {
+  //   return await this.service.getSetupData();
+  // }
 
-  @Get('data-setup')
-  async getCategoriesSetup(): Promise<Category[]> {
-    return await this.service.getSetupData();
-  }
-
-  @Get(':id')
-  async getOne(@Param('id') id: string): Promise<Category> {
-    return await this.service.findOne(id);
-  }
-
-  @Put(':id')
-  async update(@Param('id') id: string, @Body() category: Category) {
-    return await this.service.save(category);
-  }
-
-  @Delete(':id')
-  async remove(@Param('id') id: string) {
-    return await this.service.remove(id);
-  }
+  // @Get(':id')
+  // async getOne(@Param('id') id: string): Promise<Category> {
+  //   return await this.service.findOne(id);
+  // }
+  //
+  // @Put(':id')
+  // async update(@Param('id') id: string, @Body() category: Category) {
+  //   return await this.service.save(category);
+  // }
+  //
+  // @Delete(':id')
+  // async remove(@Param('id') id: string) {
+  //   return await this.service.remove(id);
+  // }
 
 
 }

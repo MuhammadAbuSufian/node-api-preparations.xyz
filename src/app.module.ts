@@ -11,25 +11,24 @@ import { ChapterController } from './controllers/chapter.controller';
 import { SubjectService } from './services/subject.service';
 import { ChapterService } from './services/chapter.service';
 import { QuestionService } from './services/question.service';
+import {MongooseModule} from "@nestjs/mongoose";
+import {categorySchema} from "./models/mongoose-schema/catagories.model";
 
 @Module({
   imports: [
-    DbConfigModule,
+      MongooseModule.forFeature([{
+          name:'Category',
+          schema:categorySchema,
+          collection:'categories'
+      }]),
+      MongooseModule.forRoot("mongodb://localhost:27017/prepara"),
+
   ],
   controllers: [
-    AppController,
-    QuestionController,
     CategoryController,
-    SubjectController,
-    ChapterController
   ],
   providers: [
-    AppService,
-    UserService,
     CategoryService,
-    SubjectService,
-    ChapterService,
-    QuestionService
   ],
 })
 export class AppModule {}
